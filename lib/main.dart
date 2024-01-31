@@ -64,11 +64,7 @@ class MyApp extends StatelessWidget {
       home: Stack(
         children: [
           Positioned.fill(child: const HomeScreen()),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: _BottomNavigation()),
+          Positioned(bottom: 0, left: 0, right: 0, child: _BottomNavigation()),
         ],
       ),
     );
@@ -495,14 +491,35 @@ class _Posts extends StatelessWidget {
   }
 }
 
-class _BottomNavigation extends StatelessWidget{
+class _BottomNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 85,
-      child: Container(
-        height: 65,
-        decoration: BoxDecoration(color: Colors.white),
+      child: Stack(
+        children: [
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: Container(
+              height: 65,
+              decoration: BoxDecoration(color: Colors.white),
+            ),
+          ),
+          Center(
+            child: Container(
+              width: 65,
+              height: 65,
+              //اگر در زمانی دکوریشن ست کردیم color را باید داخل دکوریشن قرار دهیم
+              child: Image.asset('assets/img/icons/plus.png'),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(32.5),
+                color: Color(0xff376AED),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }
