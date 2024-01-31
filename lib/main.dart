@@ -50,6 +50,11 @@ class MyApp extends StatelessWidget {
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
                 color: primaryTextColor),
+            caption: TextStyle(
+                fontFamily: defaultFontFamily,
+                fontWeight: FontWeight.w700,
+                color: Color(0xff7B8BB2),
+                fontSize: 10),
             subtitle2: TextStyle(
                 fontFamily: defaultFontFamily,
                 color: primaryTextColor,
@@ -504,23 +509,82 @@ class _BottomNavigation extends StatelessWidget {
             bottom: 0,
             child: Container(
               height: 65,
-              decoration: BoxDecoration(color: Colors.white),
+              decoration: BoxDecoration(color: Colors.white, boxShadow: [
+                BoxShadow(
+                  blurRadius: 20,
+                  color: const Color(0xff9B8487).withOpacity(0.3),
+                ),
+              ]),
+              child:   const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  BottomNavigationItem(
+                      iconFileName: 'Home.png',
+                      activeIconFileName: 'Home.png',
+                      title: 'Home'),
+                  BottomNavigationItem(
+                      iconFileName: 'Articles.png',
+                      activeIconFileName: 'Articles.png',
+                      title: 'Articles'),
+                      SizedBox(width: 8,),
+                  BottomNavigationItem(
+                      iconFileName: 'Search.png',
+                      activeIconFileName: 'Search.png',
+                      title: 'Search'),
+                  BottomNavigationItem(
+                      iconFileName: 'Menu.png',
+                      activeIconFileName: 'Menu.png',
+                      title: 'Menu')
+                ],
+              ),
             ),
           ),
           Center(
             child: Container(
               width: 65,
-              height: 65,
+              height: 85,
+              //بالا بردن جای دکمه که دقیقا وسط این صفحه پایین و صفحه اصلی قرار بگیره
+              alignment: Alignment.topCenter,
               //اگر در زمانی دکوریشن ست کردیم color را باید داخل دکوریشن قرار دهیم
-              child: Image.asset('assets/img/icons/plus.png'),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(32.5),
-                color: Color(0xff376AED),
-              ),
+              child: Container(
+                  height: 65,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(32.5),
+                    color: const Color(0xff376AED),
+                  ),
+                  child: Image.asset('assets/img/icons/plus.png')),
             ),
           )
         ],
       ),
+    );
+  }
+}
+
+class BottomNavigationItem extends StatelessWidget {
+  final String iconFileName;
+  final String activeIconFileName;
+  final String title;
+
+  const BottomNavigationItem(
+      {super.key,
+      required this.iconFileName,
+      required this.activeIconFileName,
+      required this.title});
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Image.asset('assets/img/icons/$iconFileName'),
+        SizedBox(
+          height: 4,
+        ),
+        Text(
+          title,
+          style: Theme.of(context).textTheme.caption,
+        )
+      ],
     );
   }
 }
