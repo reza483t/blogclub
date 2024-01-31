@@ -3,8 +3,16 @@ import 'package:blogclub/data.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.white,
+    statusBarIconBrightness: Brightness.dark,
+    systemNavigationBarColor: Colors.white,
+    systemNavigationBarIconBrightness: Brightness.dark
+  ));
+
   runApp(const MyApp());
 }
 
@@ -68,7 +76,7 @@ class MyApp extends StatelessWidget {
       //تبیدل ترتیب برای نمایش اعضای برنامه که در اینجا اول صفحه اصلی را گذاشتیم و برروی این کلاس bottomnavigation را اضافه کردیم
       home: Stack(
         children: [
-          Positioned.fill(child: const HomeScreen()),
+          const Positioned.fill(child: HomeScreen()),
           Positioned(bottom: 0, left: 0, right: 0, child: _BottomNavigation()),
         ],
       ),
@@ -499,7 +507,7 @@ class _Posts extends StatelessWidget {
 class _BottomNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 85,
       child: Stack(
         children: [
@@ -515,7 +523,7 @@ class _BottomNavigation extends StatelessWidget {
                   color: const Color(0xff9B8487).withOpacity(0.3),
                 ),
               ]),
-              child:   const Row(
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   BottomNavigationItem(
@@ -526,7 +534,9 @@ class _BottomNavigation extends StatelessWidget {
                       iconFileName: 'Articles.png',
                       activeIconFileName: 'Articles.png',
                       title: 'Articles'),
-                      SizedBox(width: 8,),
+                  SizedBox(
+                    width: 8,
+                  ),
                   BottomNavigationItem(
                       iconFileName: 'Search.png',
                       activeIconFileName: 'Search.png',
@@ -549,9 +559,9 @@ class _BottomNavigation extends StatelessWidget {
               child: Container(
                   height: 65,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(32.5),
-                    color: const Color(0xff376AED),
-                  ),
+                      borderRadius: BorderRadius.circular(32.5),
+                      color: const Color(0xff376AED),
+                      border: Border.all(color: Colors.white, width: 4)),
                   child: Image.asset('assets/img/icons/plus.png')),
             ),
           )
@@ -577,7 +587,7 @@ class BottomNavigationItem extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Image.asset('assets/img/icons/$iconFileName'),
-        SizedBox(
+        const SizedBox(
           height: 4,
         ),
         Text(
