@@ -60,7 +60,17 @@ class MyApp extends StatelessWidget {
                 color: secondaryTextColor,
                 fontSize: 12)),
       ),
-      home: const HomeScreen(),
+      //تبیدل ترتیب برای نمایش اعضای برنامه که در اینجا اول صفحه اصلی را گذاشتیم و برروی این کلاس bottomnavigation را اضافه کردیم
+      home: Stack(
+        children: [
+          Positioned.fill(child: const HomeScreen()),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: _BottomNavigation()),
+        ],
+      ),
     );
   }
 }
@@ -109,7 +119,9 @@ class HomeScreen extends StatelessWidget {
               ),
               const _CategoryList(),
               const _PostList(),
-              SizedBox(height: 32,),
+              SizedBox(
+                height: 32,
+              ),
             ],
           ),
         ),
@@ -365,7 +377,7 @@ class _PostList extends StatelessWidget {
             itemCount: posts.length,
             itemExtent: 141,
             shrinkWrap: true,
-            physics:const ClampingScrollPhysics(),
+            physics: const ClampingScrollPhysics(),
             itemBuilder: (context, index) {
               final post = posts[index];
               return _Posts(post: post);
@@ -406,7 +418,7 @@ class _Posts extends StatelessWidget {
           //برای ایجاد فاصله بین متن و عکس در قسمت پوست ها
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(16, 0 ,16, 0),
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
               child: Column(
                 //یعنی اینکه متن در وسط قرار بگیرد نه سمت راست عکس بالا و نه پایین وسط عکس قرار بگیرد
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -424,7 +436,8 @@ class _Posts extends StatelessWidget {
                   const SizedBox(
                     height: 8,
                   ),
-                  Text(post.title, style: Theme.of(context).textTheme.subtitle2),
+                  Text(post.title,
+                      style: Theme.of(context).textTheme.subtitle2),
                   const SizedBox(
                     height: 16,
                   ),
@@ -462,9 +475,9 @@ class _Posts extends StatelessWidget {
                         child: Container(
                           alignment: Alignment.centerRight,
                           child: Icon(
-                            post.isBookmarked?
-                            CupertinoIcons.bookmark_fill:
-                            CupertinoIcons.bookmark,
+                            post.isBookmarked
+                                ? CupertinoIcons.bookmark_fill
+                                : CupertinoIcons.bookmark,
                             size: 16,
                             color: Theme.of(context).textTheme.bodyText2!.color,
                           ),
@@ -477,6 +490,19 @@ class _Posts extends StatelessWidget {
             ),
           )
         ],
+      ),
+    );
+  }
+}
+
+class _BottomNavigation extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 85,
+      child: Container(
+        height: 65,
+        decoration: BoxDecoration(color: Colors.white),
       ),
     );
   }
