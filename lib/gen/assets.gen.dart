@@ -14,9 +14,25 @@ import 'package:flutter/services.dart';
 class $AssetsImgGen {
   const $AssetsImgGen();
 
+  $AssetsImgBackgroundGen get background => const $AssetsImgBackgroundGen();
   $AssetsImgIconsGen get icons => const $AssetsImgIconsGen();
   $AssetsImgPostsGen get posts => const $AssetsImgPostsGen();
   $AssetsImgStoriesGen get stories => const $AssetsImgStoriesGen();
+}
+
+class $AssetsImgBackgroundGen {
+  const $AssetsImgBackgroundGen();
+
+  /// File path: assets/img/background/onboarding.png
+  AssetGenImage get onboarding =>
+      const AssetGenImage('assets/img/background/onboarding.png');
+
+  /// File path: assets/img/background/splash.png
+  AssetGenImage get splash =>
+      const AssetGenImage('assets/img/background/splash.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [onboarding, splash];
 }
 
 class $AssetsImgIconsGen {
