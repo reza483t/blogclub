@@ -142,4 +142,21 @@ class AppDatabase {
           imageFileName: 'small_post_3.jpg'),
     ];
   }
+
+  static List<OnBoardingItem> get onBoardingItems{
+    List<OnBoardingItem> items = [];
+    for (var i = 0;i<4;i++){
+      items.add(OnBoardingItem(title: 'title', description: 'description'));
+    }
+    return items;
+  }
+}
+
+
+class OnBoardingItem{
+  final String title;
+  final String description;
+
+  OnBoardingItem({required this.title, required this.description});
+
 }
