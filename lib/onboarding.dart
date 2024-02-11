@@ -116,6 +116,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                               }
                             },
                             style: ButtonStyle(
+                                 backgroundColor: MaterialStateProperty.all(Colors.blue),
+                                 foregroundColor: MaterialStateProperty.all(Colors.white),
                                 minimumSize: MaterialStateProperty.all(
                                     const Size(84, 60)),
                                 shape: MaterialStateProperty.all(
