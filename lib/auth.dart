@@ -256,19 +256,18 @@ class _SignUp extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              'assets/img/icons/Google.png',
+            Assets.img.icons.google.image(
               width: 36,
               height: 36,
             ),
             const SizedBox(
               width: 24,
             ),
-            Image.asset('assets/img/icons/Facebook.png', width: 36, height: 36),
+            Assets.img.icons.facebook.image(width: 36,height: 36),
             const SizedBox(
               width: 24,
             ),
-            Image.asset('assets/img/icons/Twitter.png', width: 36, height: 36),
+            Assets.img.icons.twitter.image(width: 36,height: 36),
           ],
         )
       ],
