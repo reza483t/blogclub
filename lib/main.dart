@@ -1,3 +1,4 @@
+import 'package:blogclub/article.dart';
 import 'package:blogclub/carousel/carousel_slider.dart';
 import 'package:blogclub/data.dart';
 import 'package:blogclub/gen/assets.gen.dart';
@@ -8,14 +9,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: Colors.white,
-    statusBarIconBrightness: Brightness.dark,
-    systemNavigationBarColor: Colors.white,
-    systemNavigationBarIconBrightness: Brightness.dark
-  ));
+      statusBarColor: Colors.white,
+      statusBarIconBrightness: Brightness.dark,
+      systemNavigationBarColor: Colors.white,
+      systemNavigationBarIconBrightness: Brightness.dark));
 
   runApp(const MyApp());
 }
@@ -31,6 +30,7 @@ class MyApp extends StatelessWidget {
     const primaryColor = Color(0xFf376AED);
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         textButtonTheme: TextButtonThemeData(
             style: ButtonStyle(
@@ -40,13 +40,20 @@ class MyApp extends StatelessWidget {
           fontFamily: FontFamily.avenir,
         )))),
         colorScheme: const ColorScheme.light(
-          primary: primaryColor,
-          onPrimary: Colors.white,
-          onSurface: primaryTextColor,
-          background: Color(0xffFBFCFF),
-          surface: Colors.white,
-          onBackground: primaryTextColor
-        ),
+            primary: primaryColor,
+            onPrimary: Colors.white,
+            onSurface: primaryTextColor,
+            background: Color(0xffFBFCFF),
+            surface: Colors.white,
+            onBackground: primaryTextColor),
+        appBarTheme: const AppBarTheme(
+          titleSpacing: 32,
+            backgroundColor: Colors.white,
+            foregroundColor: primaryTextColor,
+            ),
+            snackBarTheme: const SnackBarThemeData(
+              backgroundColor: primaryColor,
+            ),
         textTheme: const TextTheme(
             subtitle1: TextStyle(
                 fontFamily: FontFamily.avenir,
@@ -90,8 +97,7 @@ class MyApp extends StatelessWidget {
       //     Positioned(bottom: 0, left: 0, right: 0, child: _BottomNavigation()),
       //   ],
       // ),
-      home: const SplashScreen(),
-
+      home: const ArticleScreen(),
     );
   }
 }
