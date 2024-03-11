@@ -3,6 +3,7 @@ import 'package:blogclub/carousel/carousel_slider.dart';
 import 'package:blogclub/data.dart';
 import 'package:blogclub/gen/assets.gen.dart';
 import 'package:blogclub/gen/fonts.gen.dart';
+import 'package:blogclub/profile.dart';
 import 'package:blogclub/splash.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
@@ -85,6 +86,10 @@ class MyApp extends StatelessWidget {
                 color: primaryTextColor,
                 fontWeight: FontWeight.w400,
                 fontSize: 14),
+                bodyText1: TextStyle(
+                fontFamily: FontFamily.avenir,
+                color: primaryTextColor,
+                fontSize: 14),
             bodyText2: TextStyle(
                 fontFamily: FontFamily.avenir,
                 color: secondaryTextColor,
@@ -97,7 +102,7 @@ class MyApp extends StatelessWidget {
       //     Positioned(bottom: 0, left: 0, right: 0, child: _BottomNavigation()),
       //   ],
       // ),
-      home: const ArticleScreen(),
+      home: const ProfileScrean(),
     );
   }
 }

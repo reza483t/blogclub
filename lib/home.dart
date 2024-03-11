@@ -308,15 +308,15 @@ class _PostList extends StatelessWidget {
             physics: const ClampingScrollPhysics(),
             itemBuilder: (context, index) {
               final post = posts[index];
-              return _Posts(post: post);
+              return Post(post: post);
             })
       ],
     );
   }
 }
 
-class _Posts extends StatelessWidget {
-  const _Posts({
+class Post extends StatelessWidget {
+  const Post({
     super.key,
     required this.post,
   });
@@ -342,7 +342,7 @@ class _Posts extends StatelessWidget {
           ClipRRect(
               borderRadius: BorderRadius.circular(16),
               child:
-                  Image.asset('assets/img/posts/small/${post.imageFileName}')),
+                  Image.asset('assets/img/posts/small/${post.imageFileName}',width: 120,)),
           //برای ایجاد فاصله بین متن و عکس در قسمت پوست ها
           Expanded(
             child: Padding(
