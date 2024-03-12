@@ -3,6 +3,7 @@ import 'package:blogclub/carousel/carousel_slider.dart';
 import 'package:blogclub/data.dart';
 import 'package:blogclub/gen/assets.gen.dart';
 import 'package:blogclub/gen/fonts.gen.dart';
+import 'package:blogclub/home.dart';
 import 'package:blogclub/profile.dart';
 import 'package:blogclub/splash.dart';
 import 'package:dotted_border/dotted_border.dart';
@@ -49,12 +50,12 @@ class MyApp extends StatelessWidget {
             onBackground: primaryTextColor),
         appBarTheme: const AppBarTheme(
           titleSpacing: 32,
-            backgroundColor: Colors.white,
-            foregroundColor: primaryTextColor,
-            ),
-            snackBarTheme: const SnackBarThemeData(
-              backgroundColor: primaryColor,
-            ),
+          backgroundColor: Colors.white,
+          foregroundColor: primaryTextColor,
+        ),
+        snackBarTheme: const SnackBarThemeData(
+          backgroundColor: primaryColor,
+        ),
         textTheme: const TextTheme(
             subtitle1: TextStyle(
                 fontFamily: FontFamily.avenir,
@@ -86,7 +87,7 @@ class MyApp extends StatelessWidget {
                 color: primaryTextColor,
                 fontWeight: FontWeight.w400,
                 fontSize: 14),
-                bodyText1: TextStyle(
+            bodyText1: TextStyle(
                 fontFamily: FontFamily.avenir,
                 color: primaryTextColor,
                 fontSize: 14),
@@ -102,12 +103,80 @@ class MyApp extends StatelessWidget {
       //     Positioned(bottom: 0, left: 0, right: 0, child: _BottomNavigation()),
       //   ],
       // ),
-      home: const ProfileScrean(),
+      home: const MainScreen(),
+    );
+  }
+}
+
+class MainScreen extends StatefulWidget {
+  const MainScreen({super.key});
+
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+const int homeindex = 0;
+const int articleindex = 1;
+const int searchindex = 2;
+const int menuindex = 3;
+const double bottomnavigationheight = 65;
+
+class _MainScreenState extends State<MainScreen> {
+  int SelectedScreenIndex = homeindex;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: [
+          Positioned.fill(
+            bottom: bottomnavigationheight,
+            child: IndexedStack(
+              index: SelectedScreenIndex,
+              children: [
+                HomeScreen(),
+                ArticleScreen(),
+                SearchScreen(),
+                ProfileScrean(),
+              ],
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: _BottomNavigation(
+              selectedIndex: SelectedScreenIndex,
+              onTap: (int index) {
+                setState(() {
+                  SelectedScreenIndex = index;
+                });
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class SearchScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text(
+        'Search Screen',
+        style: Theme.of(context).textTheme.headline4,
+      ),
     );
   }
 }
 
 class _BottomNavigation extends StatelessWidget {
+  final Function(int index) onTap;
+  final int selectedIndex;
+
+  const _BottomNavigation(
+      {super.key, required this.onTap, required this.selectedIndex});
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -126,27 +195,41 @@ class _BottomNavigation extends StatelessWidget {
                   color: const Color(0xff9B8487).withOpacity(0.3),
                 ),
               ]),
-              child: const Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   BottomNavigationItem(
                       iconFileName: 'Home.png',
-                      activeIconFileName: 'Home.png',
+                      activeIconFileName: 'home Active.png',
+                      onTap: () {
+                        onTap(homeindex);
+                      },
+                      isActive: selectedIndex == homeindex,
                       title: 'Home'),
                   BottomNavigationItem(
                       iconFileName: 'Articles.png',
-                      activeIconFileName: 'Articles.png',
+                      activeIconFileName: 'book Active.png',
+                      onTap: () {
+                        onTap(articleindex);
+                      },
+                      isActive: selectedIndex == articleindex,
                       title: 'Articles'),
-                  SizedBox(
-                    width: 8,
-                  ),
+                  Expanded(child: Container()),
                   BottomNavigationItem(
                       iconFileName: 'Search.png',
-                      activeIconFileName: 'Search.png',
+                      activeIconFileName: 'search Active.png',
+                      onTap: () {
+                        onTap(searchindex);
+                      },
+                      isActive: selectedIndex == searchindex,
                       title: 'Search'),
                   BottomNavigationItem(
                       iconFileName: 'Menu.png',
-                      activeIconFileName: 'Menu.png',
+                      activeIconFileName: 'manu Acive.png',
+                      onTap: () {
+                        onTap(menuindex);
+                      },
+                      isActive: selectedIndex == menuindex,
                       title: 'Menu')
                 ],
               ),
@@ -160,7 +243,7 @@ class _BottomNavigation extends StatelessWidget {
               alignment: Alignment.topCenter,
               //اگر در زمانی دکوریشن ست کردیم color را باید داخل دکوریشن قرار دهیم
               child: Container(
-                  height: 65,
+                  height: bottomnavigationheight,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(32.5),
                       color: const Color(0xff376AED),
@@ -178,26 +261,43 @@ class BottomNavigationItem extends StatelessWidget {
   final String iconFileName;
   final String activeIconFileName;
   final String title;
+  final bool isActive;
+  final Function() onTap;
 
   const BottomNavigationItem(
       {super.key,
       required this.iconFileName,
       required this.activeIconFileName,
-      required this.title});
+      required this.title,
+      required this.onTap,
+      required this.isActive});
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Image.asset('assets/img/icons/$iconFileName'),
-        const SizedBox(
-          height: 4,
+    final ThemeData themeData = Theme.of(context);
+    return Expanded(
+      child: InkWell(
+        onTap: onTap,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              'assets/img/icons/${isActive ? activeIconFileName : iconFileName}',
+              width: 24,
+              height: 24,
+            ),
+            const SizedBox(
+              height: 4,
+            ),
+            Text(
+              title,
+              style: themeData.textTheme.caption!.apply(
+                  color: isActive
+                      ? themeData.colorScheme.primary
+                      : themeData.textTheme.caption!.color),
+            )
+          ],
         ),
-        Text(
-          title,
-          style: Theme.of(context).textTheme.caption,
-        )
-      ],
+      ),
     );
   }
 }

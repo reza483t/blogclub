@@ -80,6 +80,10 @@ class $AssetsImgIconsGen {
   AssetGenImage get twitter =>
       const AssetGenImage('assets/img/icons/Twitter.png');
 
+  /// File path: assets/img/icons/book Active.png
+  AssetGenImage get bookActive =>
+      const AssetGenImage('assets/img/icons/book Active.png');
+
   /// File path: assets/img/icons/category_1.png
   AssetGenImage get category1 =>
       const AssetGenImage('assets/img/icons/category_1.png');
@@ -96,12 +100,24 @@ class $AssetsImgIconsGen {
   AssetGenImage get category4 =>
       const AssetGenImage('assets/img/icons/category_4.png');
 
+  /// File path: assets/img/icons/home Active.png
+  AssetGenImage get homeActive =>
+      const AssetGenImage('assets/img/icons/home Active.png');
+
+  /// File path: assets/img/icons/manu Acive.png
+  AssetGenImage get manuAcive =>
+      const AssetGenImage('assets/img/icons/manu Acive.png');
+
   /// File path: assets/img/icons/notification.png
   AssetGenImage get notification =>
       const AssetGenImage('assets/img/icons/notification.png');
 
   /// File path: assets/img/icons/plus.png
   AssetGenImage get plus => const AssetGenImage('assets/img/icons/plus.png');
+
+  /// File path: assets/img/icons/search Active.png
+  AssetGenImage get searchActive =>
+      const AssetGenImage('assets/img/icons/search Active.png');
 
   /// List of all assets
   List<dynamic> get values => [
@@ -116,12 +132,16 @@ class $AssetsImgIconsGen {
         table,
         thumbs,
         twitter,
+        bookActive,
         category1,
         category2,
         category3,
         category4,
+        homeActive,
+        manuAcive,
         notification,
-        plus
+        plus,
+        searchActive
       ];
 }
 
