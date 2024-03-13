@@ -1,4 +1,5 @@
 
+import 'package:blogclub/article.dart';
 import 'package:blogclub/carousel/carousel_slider.dart';
 import 'package:blogclub/data.dart';
 import 'package:blogclub/gen/assets.gen.dart';
@@ -325,99 +326,102 @@ class Post extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.fromLTRB(32, 8, 32, 8),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: const [
-          BoxShadow(
-            blurRadius: 16,
-            color: Color(0x1a5282ff),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          ClipRRect(
-              borderRadius: BorderRadius.circular(16),
-              child:
-                  Image.asset('assets/img/posts/small/${post.imageFileName}',width: 120,)),
-          //برای ایجاد فاصله بین متن و عکس در قسمت پوست ها
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-              child: Column(
-                //یعنی اینکه متن در وسط قرار بگیرد نه سمت راست عکس بالا و نه پایین وسط عکس قرار بگیرد
-                mainAxisAlignment: MainAxisAlignment.center,
-                //این کد هم باعس میشه که قسمت تاپ تایتل و توضیحات باهم در یک طرف یعنی در زیر یک دیگر قرار بگیرند
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    post.caption,
-                    style: const TextStyle(
-                        fontFamily: FontFamily.avenir,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 14,
-                        color: Color(0xff376AED)),
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  Text(post.title,
-                      style: Theme.of(context).textTheme.subtitle2),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Icon(
-                        CupertinoIcons.hand_thumbsup,
-                        size: 16,
-                        color: Theme.of(context).textTheme.bodyText2!.color,
-                      ),
-                      const SizedBox(
-                        width: 4,
-                      ),
-                      Text(
-                        post.likes,
-                        style: Theme.of(context).textTheme.bodyText2,
-                      ),
-                      const SizedBox(
-                        width: 16,
-                      ),
-                      Icon(
-                        CupertinoIcons.clock,
-                        size: 16,
-                        color: Theme.of(context).textTheme.bodyText2!.color,
-                      ),
-                      const SizedBox(
-                        width: 4,
-                      ),
-                      Text(
-                        post.time,
-                        style: Theme.of(context).textTheme.bodyText2,
-                      ),
-                      Expanded(
-                        child: Container(
-                          alignment: Alignment.centerRight,
-                          child: Icon(
-                            post.isBookmarked
-                                ? CupertinoIcons.bookmark_fill
-                                : CupertinoIcons.bookmark,
-                            size: 16,
-                            color: Theme.of(context).textTheme.bodyText2!.color,
-                          ),
-                        ),
-                      )
-                    ],
-                  )
-                ],
-              ),
+    return InkWell(
+      onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ArticleScreen() )),
+      child: Container(
+        margin: const EdgeInsets.fromLTRB(32, 8, 32, 8),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: const [
+            BoxShadow(
+              blurRadius: 16,
+              color: Color(0x1a5282ff),
             ),
-          )
-        ],
+          ],
+        ),
+        child: Row(
+          children: [
+            ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child:
+                    Image.asset('assets/img/posts/small/${post.imageFileName}',width: 120,)),
+            //برای ایجاد فاصله بین متن و عکس در قسمت پوست ها
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+                child: Column(
+                  //یعنی اینکه متن در وسط قرار بگیرد نه سمت راست عکس بالا و نه پایین وسط عکس قرار بگیرد
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  //این کد هم باعس میشه که قسمت تاپ تایتل و توضیحات باهم در یک طرف یعنی در زیر یک دیگر قرار بگیرند
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      post.caption,
+                      style: const TextStyle(
+                          fontFamily: FontFamily.avenir,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 14,
+                          color: Color(0xff376AED)),
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    Text(post.title,
+                        style: Theme.of(context).textTheme.subtitle2),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Icon(
+                          CupertinoIcons.hand_thumbsup,
+                          size: 16,
+                          color: Theme.of(context).textTheme.bodyText2!.color,
+                        ),
+                        const SizedBox(
+                          width: 4,
+                        ),
+                        Text(
+                          post.likes,
+                          style: Theme.of(context).textTheme.bodyText2,
+                        ),
+                        const SizedBox(
+                          width: 16,
+                        ),
+                        Icon(
+                          CupertinoIcons.clock,
+                          size: 16,
+                          color: Theme.of(context).textTheme.bodyText2!.color,
+                        ),
+                        const SizedBox(
+                          width: 4,
+                        ),
+                        Text(
+                          post.time,
+                          style: Theme.of(context).textTheme.bodyText2,
+                        ),
+                        Expanded(
+                          child: Container(
+                            alignment: Alignment.centerRight,
+                            child: Icon(
+                              post.isBookmarked
+                                  ? CupertinoIcons.bookmark_fill
+                                  : CupertinoIcons.bookmark,
+                              size: 16,
+                              color: Theme.of(context).textTheme.bodyText2!.color,
+                            ),
+                          ),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
