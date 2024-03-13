@@ -4,6 +4,7 @@ import 'package:blogclub/carousel/carousel_slider.dart';
 import 'package:blogclub/data.dart';
 import 'package:blogclub/gen/assets.gen.dart';
 import 'package:blogclub/gen/fonts.gen.dart';
+import 'package:blogclub/main.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -327,7 +328,7 @@ class Post extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ArticleScreen() )),
+      onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => SimpleScrean() )),
       child: Container(
         margin: const EdgeInsets.fromLTRB(32, 8, 32, 8),
         decoration: BoxDecoration(
