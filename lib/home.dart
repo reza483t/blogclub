@@ -1,4 +1,3 @@
-
 import 'package:blogclub/article.dart';
 import 'package:blogclub/carousel/carousel_slider.dart';
 import 'package:blogclub/data.dart';
@@ -32,7 +31,7 @@ class HomeScreen extends StatelessWidget {
                       'Hi , Reza!',
                       style: themeData.textTheme.subtitle1,
                     ),
-                    Assets.img.icons.notification.image(width: 32,height: 32),
+                    Assets.img.icons.notification.image(width: 32, height: 32),
                   ],
                 ),
               ),
@@ -328,7 +327,10 @@ class Post extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => SimpleScrean() )),
+      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => SimpleScrean(
+                tabname: 'Home',
+              ))),
       child: Container(
         margin: const EdgeInsets.fromLTRB(32, 8, 32, 8),
         decoration: BoxDecoration(
@@ -345,8 +347,10 @@ class Post extends StatelessWidget {
           children: [
             ClipRRect(
                 borderRadius: BorderRadius.circular(16),
-                child:
-                    Image.asset('assets/img/posts/small/${post.imageFileName}',width: 120,)),
+                child: Image.asset(
+                  'assets/img/posts/small/${post.imageFileName}',
+                  width: 120,
+                )),
             //برای ایجاد فاصله بین متن و عکس در قسمت پوست ها
             Expanded(
               child: Padding(
@@ -411,7 +415,8 @@ class Post extends StatelessWidget {
                                   ? CupertinoIcons.bookmark_fill
                                   : CupertinoIcons.bookmark,
                               size: 16,
-                              color: Theme.of(context).textTheme.bodyText2!.color,
+                              color:
+                                  Theme.of(context).textTheme.bodyText2!.color,
                             ),
                           ),
                         )
